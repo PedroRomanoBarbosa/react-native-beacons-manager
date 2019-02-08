@@ -755,6 +755,18 @@ public class BeaconsAndroidModule extends ReactContextBaseJavaModule implements 
         }
     }
 
+    @ReactMethod
+    public void cancelScanNotification(Promise promise) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationManager.cancel(requestCode);
+                pendingNotification = null;
+            }
+        } catch (Exception e) {
+            promise.reject(E_LAYOUT_ERROR, e);
+        }
+    }
+
     private Boolean isActivityRunning(Class activityClass) {
         ActivityManager activityManager = (ActivityManager) mApplicationContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);

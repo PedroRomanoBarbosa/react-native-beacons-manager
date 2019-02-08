@@ -296,6 +296,18 @@ class BeaconsDemo extends Component<Props, State> {
           // shouldItemUpdate={this.shouldItemUpdate}
           />
         </View>
+        <TouchableHighlight
+          style={styles.actionButton}
+          onPress={() => beaconTestManager.cancelScanNotification()}
+        >
+          <Text style={styles.actionText}>CANCEL NOTIFICATION</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.actionButton}
+          onPress={() => beaconTestManager.setScanNotificationContent('Hey there', 'Android 8+ requires a pending notification to do a foreground scan')}
+        >
+          <Text style={styles.actionText}>OPEN NOTIFICATION</Text>
+        </TouchableHighlight>
       </ImageBackground>
     );
   }
